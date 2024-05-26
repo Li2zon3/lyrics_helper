@@ -9,9 +9,9 @@ from pygtrans import Translate
 
 print('短时间内请求太多次可能被封锁ip，请过一段时间采尝试，或者更换ip')
 newline = os.linesep
-path = input('请输入存储路径：(绝对路径)\n为了复用时避免重复输入，可注释掉本行，并将代码第114行path变量替换为您自己的存储路径')
+path = input('请输入存储路径：(绝对路径)\n为了复用时避免重复输入，可注释掉本行，并将代码第150行path变量替换为您自己的存储路径')
 title = str(input('请输入歌曲标题：(为限缩检索范围，可附带歌曲其他特征[如歌手]，或者附带网易云、酷我、uta-net等音乐源)'))
-lyric = input('是否检索歌词？(输入序号，不输入则不检索)\n1.百度\n2.谷歌(须挂梯子)\n3.Genius(须自备genius api)')
+lyric = input('是否检索歌词？(输入序号，如不检索直接按回车)\n1.百度\n2.谷歌(须挂梯子)\n3.Genius(须自备genius api)')
 if lyric == '1':
     url = 'https://www.baidu.com/s'
     params = {
@@ -168,7 +168,7 @@ else:
             client = Translate()
             text3 = client.translate(text1, target='zh')
         if '1' in n:
-            print('为了复用时避免重复输入，可注释掉代码第134-137行，并将代码第158、163、165行appid,key变量替换为您自己的数据')
+            print('为了复用时避免重复输入，可注释掉代码第171-173行，并将代码第194、199、201行appid,key变量替换为您自己的数据')
             appid = input('输入百度翻译appid')
             key = input('输入百度翻译key')
 
