@@ -7,11 +7,11 @@ from bs4 import BeautifulSoup
 import requests
 from pygtrans import Translate
 
-print('短时间内请求太多次可能被封锁ip，请过一段时间采尝试，或者更换ip')
+print('短时间内请求太多次可能被封锁ip，请过一段时间采尝试，或者更换ip\nRequests too many times in a short period of time may be blocked, so please try after a while, or change the IP')
 newline = os.linesep
-path = input('请输入存储路径：(绝对路径)\n为了复用时避免重复输入，可注释掉本行，并将代码第150行path变量替换为您自己的存储路径')
-title = str(input('请输入歌曲标题：(为限缩检索范围，可附带歌曲其他特征[如歌手]，或者附带网易云、酷我、uta-net等音乐源)'))
-lyric = input('是否检索歌词？(输入序号，如不检索直接按回车)\n1.百度\n2.谷歌(须挂梯子)\n3.Genius(须自备genius api)')
+path = input('请输入存储路径：(绝对路径)\n为了复用时避免重复输入，可注释掉本行，并将代码第150行path变量替换为您自己的存储路径\nPlease enter the storage path: (absolute path)\nTo avoid retyping when reusing, you can comment out this line and replace the path variable on line 150 of the code with your own storage path')
+title = str(input('请输入歌曲标题：(为限缩检索范围，可附带歌曲其他特征[如歌手]，或者附带网易云、酷我、uta-net等音乐源)\nPlease enter the title of the song: (to narrow the search scope, you can attach other characteristics of the song [such as singer], or attach music sources such as NetEase Cloud, Kuwo, UTA-Net, etc.)'))
+lyric = input('是否检索歌词？(输入序号，如不检索直接按回车)\n1.百度\n2.谷歌(须挂梯子)\n3.Genius(须自备genius api)\nDo you want to search for lyrics? (Enter serial number, if not searching, press enter directly) \n1. Baidu \n2. Google \n3. Genius (requires self-provided Genius API)')
 if lyric == '1':
     url = 'https://www.baidu.com/s'
     params = {
@@ -38,7 +38,7 @@ if lyric == '1':
         print('')
     urls = [name.a['href'] for name in names]
 
-    num = int(input('输入序号：(支持网易云音乐、酷我音乐)'))
+    num = int(input('输入序号：(支持网易云音乐、酷我音乐)\nEnter the serial number: (support NetEase Cloud Music, Kuwo Music)'))
     url_ = urls[num - 1]
     resp = requests.get(url=url_, headers=headers)
     soup_ = BeautifulSoup(resp.text, 'html.parser')
@@ -56,7 +56,7 @@ if lyric == '1':
         if final_lyric:
             print(final_lyric)
         else:
-            print('未检索到歌词，请尝试其他来源或自行获取歌词')
+            print('未检索到歌词，请尝试其他来源或自行获取歌词\nNo lyrics were retrieved, try a different source or get the lyrics yourself')
 
     elif '酷我' in dic[str(num)]:
         ids = soup_.find_all(name='link', attrs={'data-n-head': "ssr"})
@@ -71,7 +71,7 @@ if lyric == '1':
                 final_lyric += l['lineLyric'] + '\n'
             print(final_lyric)
         else:
-            print('未检索到歌词，请尝试其他来源或自行获取歌词')
+            print('未检索到歌词，请尝试其他来源或自行获取歌词\nNo lyrics were retrieved, try a different source or get the lyrics yourself')
 
 elif lyric == '2':
     url = f"http://google.com/search?q={title}"
@@ -101,7 +101,7 @@ elif lyric == '2':
                     }
                     results.append(item)
 
-    num = int(input('输入序号：(支持uta-net)'))
+    num = int(input('输入序号：(支持uta-net)\nEnter serial number: (supports uta-net)'))
     if 'uta-net' in results[num - 1]["link"]:
         response = requests.get(url=results[num - 1]["link"], headers=headers)
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -111,7 +111,7 @@ elif lyric == '2':
         print(final_lyric)
 
 elif lyric == '3':
-    print('为避免重复输入，可注释掉代码第114、115行，并将第124行genius_api变量替换为您个人的数据')
+    print('为避免重复输入，可注释掉代码第114、115行，并将第124行genius_api变量替换为您个人的数据\nTo avoid re-entry, you can comment out lines 114 and 115 of the code and replace the variables genius_api line 124 with your personal data')
     genius_api = str(input('请输入genius api:'))
     url = ' https://api.genius.com/search'
     params = {
@@ -133,7 +133,7 @@ elif lyric == '3':
         full_title = re.sub(r'\\u200b', '', i['result']['full_title'])
         full_title = re.sub(r'\\xa0', ' ', full_title)
         print(f'{number}.{full_title}\nurl=https://api.genius.com{api_path}')
-    number_ = input('请输入序号：')
+    number_ = input('请输入序号：\nPlease enter the serial number:')
     song_path = song_search_result[int(number_) - 1]['result']['path']
     song_url = 'https://genius.com' + song_path
     respo = requests.get(url=song_url)
@@ -146,7 +146,7 @@ elif lyric == '3':
         final_lyric += i
     print(final_lyric)
 
-text = str(input('请输入格式调整好的歌词：(若无，不必输入，直接按回车；使用已检索到的、格式调整好的[!]歌词则输入1)'))
+text = str(input('请输入格式调整好的歌词：(若无，不必输入，直接按回车；使用已检索到的、格式调整好的[!]歌词则输入1)\nPlease enter the formatted lyrics: (If none, do not enter, press enter directly; if using the retrieved and formatted [!] lyrics, enter 1)'))
 file = open(f'{path}/{title}.txt', 'w')
 if text == '1':
     print(final_lyric, file=file)
@@ -155,22 +155,23 @@ elif text:
     print(text, file=file)
     file.close()
 else:
-    text0 = str(input('请输入原歌词：（每行一句歌词；使用已检索到的歌词则输入1）'))
+    text0 = str(input('请输入原歌词：（每行一句歌词；使用已检索到的歌词则输入1）\nPlease enter the original lyrics: (Each line has one lyric; if using retrieved lyrics, enter 1)'))
     if text0 == '1':
         text0 = final_lyric
     text1 = text0.split(newline)
-    text2 = str(input('请输入翻译歌词：(每行一句歌词；若无，不必输入，直接按回车)'))
+    text2 = str(input('请输入翻译歌词：(每行一句歌词；若无，不必输入，直接按回车)\nPlease enter the translated lyrics: (Each line has one lyric; if not, do not enter, press enter directly)'))
     if text2:
         text3 = text2.split(newline)
     else:
-        n = str(input('请选择翻译引擎：1.百度（须自备api账号密钥） or 2.谷歌(须挂梯子)\n可复选(但挂梯子时有可能无法链接百度翻译)，即输入12'))
+        n = str(input('请选择翻译引擎：1.百度（须自备api账号密钥） or 2.谷歌(须挂梯子)\n可复选(但挂梯子时有可能无法链接百度翻译)，即输入12\nPlease select the translation engine: 1.Baidu (you must bring your own API account key) or 2.Google\nYou can select both, that is, enter 12'))
+        print("if you want to translate lyrics into English instead of Chinese, change 'zh' in lines 170,199 of the code to 'en'")
         if '2' in n:
             client = Translate()
-            text3 = client.translate(text1, target='zh')
+            text3 = client.translate(text1, target='zh') # if you want to translate lyrics into English instead of Chinese, change 'zh' here to 'en'
         if '1' in n:
-            print('为了复用时避免重复输入，可注释掉代码第171-173行，并将代码第194、199、201行appid,key变量替换为您自己的数据')
-            appid = input('输入百度翻译appid')
-            key = input('输入百度翻译key')
+            print('为了复用时避免重复输入，可注释掉代码第170-173行，并将代码第194、199、201行appid,key变量替换为您自己的数据\nTo avoid repeated input, you can comment out lines 170-173 of the code and replace the appid and key variables on lines 194, 199, and 201 with your own data')
+            appid = input('输入百度翻译appid\nEnter the Baidu Translate appid')
+            key = input('输入百度翻译key\nEnter the Baidu Translate key')
 
     for i in range(len(text1)):
         print(text1[i], file=file)
@@ -195,8 +196,8 @@ else:
                 params = {
                     'q': QUERY,
                     'from': 'auto',
-                    'to': 'zh',
-                    'appid': int(appid),  # 此处appid是整数类型，不是字符串类型！！！
+                    'to': 'zh', # if you want to translate lyrics into English instead of Chinese, change 'zh' here to 'en'
+                    'appid': int(appid),  # 此处'appid'是整数类型，不是字符串类型！！！
                     'salt': salt,
                     'key': str(key),
                     'sign': sign
@@ -225,4 +226,4 @@ else:
         print('', file=file)
 
     file.close()
-print('任务完成，感谢使用')
+print('任务完成，感谢使用\nTask completed. Thank you for using it')
