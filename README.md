@@ -41,6 +41,7 @@ genius须自备api，免费注册即可（https://genius.com/developers）。
 2.运行py文件。
 
 
+
 1. Functions:
 
 1.1 Lyrics translation and typesetting
@@ -62,7 +63,7 @@ After retrieving the song in Google, further get the lyrics from the UTA-NET mus
 
 After retrieving the song in Genius, further get the lyrics from that music source.
 
-Concentrate:
+P.S.:
 
 The reason why it is necessary to search through Baidu and Google, rather than directly searching through music sources such as NetEase Cloud and Kuwo, is that the song ID is not easy to get, and it is necessary to use Baidu and Google search as an intermediary to obtain the song ID.
 
