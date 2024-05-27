@@ -11,7 +11,7 @@ print('短时间内请求太多次可能被封锁ip，请过一段时间采尝�
 newline = os.linesep
 path = input('请输入存储路径：(绝对路径)\n为了复用时避免重复输入，可注释掉本行，并将代码第150行path变量替换为您自己的存储路径\nPlease enter the storage path: (absolute path)\nTo avoid retyping when reusing, you can comment out this line and replace the path variable on line 150 of the code with your own storage path')
 title = str(input('请输入歌曲标题：(为限缩检索范围，可附带歌曲其他特征[如歌手]，或者附带网易云、酷我、uta-net等音乐源)\nPlease enter the title of the song: (to narrow the search scope, you can attach other characteristics of the song [such as singer], or attach music sources such as NetEase Cloud, Kuwo, UTA-Net, etc.)'))
-lyric = input('是否检索歌词？(输入序号，如不检索直接按回车)\n1.百度\n2.谷歌(须挂梯子)\n3.Genius(须自备genius api)\nDo you want to search for lyrics? (Enter serial number, if not searching, press enter directly) \n1. Baidu \n2. Google \n3. Genius (requires self-provided Genius API)')
+lyric = str(input('是否检索歌词？(输入序号，如不检索直接按回车)\n1.百度\n2.谷歌(须挂梯子)\n3.Genius(须自备genius api)\nDo you want to search for lyrics? (Enter serial number, if not searching, press enter directly) \n1. Baidu \n2. Google \n3. Genius (requires self-provided Genius API)'))
 if lyric == '1':
     url = 'https://www.baidu.com/s'
     params = {
