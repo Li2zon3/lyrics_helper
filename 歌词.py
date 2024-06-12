@@ -169,7 +169,7 @@ else:
             client = Translate()
             text3 = client.translate(text1, target='zh') # if you want to translate lyrics into English instead of Chinese, change 'zh' here to 'en'
         if '1' in n:
-            print('为了复用时避免重复输入，可注释掉代码第170-173行，并将代码第194、199、201行appid,key变量替换为您自己的数据\nTo avoid repeated input, you can comment out lines 170-173 of the code and replace the appid and key variables on lines 194, 199, and 201 with your own data')
+            print('为了复用时避免重复输入，可注释掉代码第171-173行，并将代码第194、199、201行appid,key变量替换为您自己的数据\nTo avoid repeated input, you can comment out lines 170-173 of the code and replace the appid and key variables on lines 194, 199, and 201 with your own data')
             appid = input('输入百度翻译appid\nEnter the Baidu Translate appid')
             key = input('输入百度翻译key\nEnter the Baidu Translate key')
 
